@@ -7,10 +7,7 @@ import numpy as np
 df = pd.read_csv('fcc-forum-pageviews.csv', parse_dates=['date'], index_col='date')
 
 # Clean the data
-df = df[
-    (df['value'] > df['value'].quantile(0.025)) &
-    (df['value'] < df['value'].quantile(0.975))
-]
+df = df[(df['value'] > df['value'].quantile(0.025)) & (df['value'] < df['value'].quantile(0.975))]
 
 def draw_line_plot():
 
@@ -27,13 +24,18 @@ def draw_line_plot():
     return fig
 
 def draw_bar_plot():
+    #copy the data
     df_bar = df.copy().reset_index()
+
+    #add year and month columns:
     df_bar['year'] = [d.year for d in df_bar.date]
     df_bar['month'] = [d.strftime('%B') for d in df_bar.date]
 
-    # It should show average daily page views for each month grouped by year. 
-    df_bar = df_bar.groupby(['year', 'month'])['value'].mean()#.reset_index()
+    #group by month and year:
+    df_bar = df_bar.groupby(['year', 'month'])['value'].mean()
+    #unstack for plotting:
     df_bar = df_bar.unstack()
+    print(df_bar)
     #columns
     df_bar.columns = ['January','February','March','April','May','June','July','August','September','October','November','December']
     # Draw bar plot
@@ -50,7 +52,7 @@ def draw_bar_plot():
     return fig
 
 def draw_box_plot():
-    # Prepare data for box plots (this part is done!)
+    # Prepare data for box plots
     df_box = df.copy().reset_index()
     df_box['year'] = [d.year for d in df_box.date]
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
@@ -68,9 +70,6 @@ def draw_box_plot():
     ax2.set_title("Month-wise Box Plot (Seasonality)")
     ax2.set_xlabel("Month")
     ax2.set_ylabel("Page Views")
-
-
-
 
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
