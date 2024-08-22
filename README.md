@@ -1,6 +1,8 @@
 # Assignment: Page View Time Series Visualizer
 In this project, I use `Pandas`, `Matplotlib`, and `Seaborn` to import, clean, and visualize the time series provided by the page view dataset in `fcc-forum-pageviews.csv`.
 
+See the [notebook](https://github.com/richard-booth/page-view-time-series-visualizer/blob/main/page_view_time_series_visualizer.ipynb) for a walk-through of my solution in [`time_series_visualizer.py`](https://github.com/richard-booth/page-view-time-series-visualizer/blob/main/time_series_visualizer.py).
+
 # Instructions:
 For this project you will visualize time series data using a line chart, bar chart, and box plots. You will use Pandas, Matplotlib, and Seaborn to visualize a dataset containing the number of page views each day on the freeCodeCamp.org forum from 2016-05-09 to 2019-12-03. The data visualizations will help you understand the patterns in visits and identify yearly and monthly growth.
 
